@@ -30,6 +30,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Services\IClientService.cs" />
+    <Compile Include="Services\ClientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
