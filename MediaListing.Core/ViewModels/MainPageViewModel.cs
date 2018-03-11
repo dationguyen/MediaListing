@@ -37,7 +37,7 @@ namespace MediaListing.Core.ViewModels
             await base.Initialize();
 
             //retrive data from URL
-            var source = await _dataService.ReadJsonDataAsync();
+            var source = await _dataService.ReadJsonDataAsync(null);
             
             if(source != null)
             {

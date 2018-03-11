@@ -8,3 +8,6 @@
 /MediaListing.Core/obj/Debug
 /MediaListing.Test/obj/Debug
 /packages
+/MediaListing/bin/iPhoneSimulator/Debug
+/MediaListing/obj/iPhoneSimulator/Debug
+/MediaListing.Test/bin/Debug
