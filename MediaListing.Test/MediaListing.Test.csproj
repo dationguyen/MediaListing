@@ -82,7 +82,6 @@
   <ItemGroup>
     <Compile Include="DataServicesTest.cs" />
     <Compile Include="MainPageViewModeTesl.cs" />
-    <Compile Include="MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,27 +14,9 @@ using System.Threading.Tasks;
 namespace MediaListing.Test
 {
     [TestFixture]
-    public class MainPageViewModeTest:MvxIoCSupportingTest
+    public class MainPageViewModeTest/*:MvxIoCSupportingTest*/
     {
-        protected MockDispatcher MockDispatcher;
-        protected override void AdditionalSetup()
-        {
-            base.AdditionalSetup();
-            MockDispatcher = new MockDispatcher();
-            Ioc.RegisterSingleton<IMvxViewDispatcher>(MockDispatcher);
-            Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(MockDispatcher);
-            // required only when passing parameters
-            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
-
-
-        }
-
-        [OneTimeSetUp]
-        public void TestInit()
-        {
-            Setup();
-        }
-
+       
 
         [Test]
         public async Task TestThatDataWillBeLoadedAfterInitialize()
@@ -59,5 +41,27 @@ namespace MediaListing.Test
             Assert.AreEqual(testData,mainPageViewModel.CategoryDataSource);
 
         }
+
+
+        //the bellow code used for navigation test but I got struggled with Navigation Service
+        //protected MockDispatcher MockDispatcher;
+        //protected override void AdditionalSetup()
+        //{
+        //    base.AdditionalSetup();
+        //    MockDispatcher = new MockDispatcher();
+        //    Ioc.RegisterSingleton<IMvxViewDispatcher>(MockDispatcher);
+        //    Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(MockDispatcher);
+        //    // required only when passing parameters
+        //    Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+
+
+        //}
+
+        //[OneTimeSetUp]
+        //public void TestInit()
+        //{
+        //    Setup();
+        //}
+
     }
 }
