@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/MediaListing/v15
+/.vs/MediaListing/lut
+/MediaListing.Core/bin/Debug
+/MediaListing.Core/obj/Debug
+/MediaListing.Test/obj/Debug
+/packages

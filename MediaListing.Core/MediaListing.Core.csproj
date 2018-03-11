@@ -27,16 +27,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\MediaItem.cs" />
+    <Compile Include="Models\ImageSources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ItemDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="Services\IClientService.cs" />
-    <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\DataService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
       <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
@@ -49,6 +50,9 @@
     </Reference>
     <Reference Include="MvvmCross.Localization">
       <HintPath>..\packages\MvvmCross.Binding.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

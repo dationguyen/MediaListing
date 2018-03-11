@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -77,7 +77,22 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvvmCross.Plugins.DownloadCache, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.DownloadCache.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.DownloadCache.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.DownloadCache.iOS, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.DownloadCache.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.DownloadCache.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File.iOS, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.5.6.3\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
@@ -104,37 +119,71 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <InterfaceDefinition Include="Resources\Main.storyboard" />
-    <InterfaceDefinition Include="Views\MainPageViewController.xib" />
+    <InterfaceDefinition Include="Views\MainPageViewController.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <InterfaceDefinition Include="Views\Cells\CategoryViewCell.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\ItemDetailPageController.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\MediaItemViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\Cells\CategoryViewCell.cs" />
+    <Compile Include="Views\Cells\CategoryViewCell.designer.cs">
+      <DependentUpon>CategoryViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\MediaItemViewCell.cs" />
+    <Compile Include="Views\Cells\MediaItemViewCell.designer.cs">
+      <DependentUpon>MediaItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemDetailPageController.cs" />
+    <Compile Include="Views\ItemDetailPageController.designer.cs">
+      <DependentUpon>ItemDetailPageController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPageViewController.cs" />
     <Compile Include="Views\MainPageViewController.designer.cs">
       <DependentUpon>MainPageViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DataSources\MediaViewSource.cs" />
+    <Compile Include="Views\DataSources\CategoryViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MediaListing.Core\MediaListing.Core.csproj">
       <Project>{9017700E-DB06-431C-884A-4323F73E1968}</Project>
       <Name>MediaListing.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

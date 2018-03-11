@@ -1,15 +1,16 @@
-﻿using System;
-using CoreGraphics;
+﻿using CoreGraphics;
 using MediaListing.Core.ViewModels;
+using MediaListing.Views.DataSources;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using UIKit;
 
 namespace MediaListing.Views
 {
-    public partial class MainPageViewController : MvxViewController<MainPageViewModel>
+    public partial class MainPageViewController:MvxViewController<MainPageViewModel>
     {
-        public MainPageViewController() : base("MainPageViewController", null)
+        private UITableView tableView;
+        public MainPageViewController() : base("MainPageViewController",null)
         {
         }
 
@@ -21,22 +22,12 @@ namespace MediaListing.Views
             View.BackgroundColor = UIColor.White;
             Title = "Media listing";
 
-            var table = new UITableView();
+            //Initialize UI elements
+            UIInitialize();
+            
+            //Binding Data from viewmodel to view
+            BindingData();
 
-
-            //var btn = UIButton.FromType(UIButtonType.System);
-            //btn.Frame = new CGRect(20, 200, 280, 44);
-            //btn.SetTitle("Click Me", UIControlState.Normal);
-
-            //var user = new UIViewController();
-            //user.View.BackgroundColor = UIColor.Magenta;
-
-            //btn.TouchUpInside += (sender, e) => {
-            //    this.NavigationController.PushViewController(user, true);
-            //};
-
-            //View.AddSubview(btn);
-           
         }
 
         public override void DidReceiveMemoryWarning()
@@ -44,6 +35,41 @@ namespace MediaListing.Views
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
         }
+
+        #region Initialize
+
+        private void UIInitialize()
+        {
+            tableView = new UITableView(new CGRect(0,0,View.Bounds.Width,View.Bounds.Height))
+            {
+                SeparatorStyle = UITableViewCellSeparatorStyle.None,
+                SeparatorColor = UIColor.Clear,
+                ContentMode = UIViewContentMode.ScaleAspectFill,
+                AlwaysBounceVertical = true,
+                AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleDimensions,
+                SectionFooterHeight = 28,
+                SectionHeaderHeight = 28,
+                EstimatedRowHeight = 40f,
+                TableFooterView = new UIView(),
+                RowHeight = UITableView.AutomaticDimension,
+                AllowsSelection = false
+            };
+
+            View.AddSubview(tableView);
+        }
+
+      
+        private void BindingData()
+        {
+            var source = new CategoryViewSource(tableView);
+            var set = this.CreateBindingSet<MainPageViewController,MainPageViewModel>();
+            set.Bind(source).For(s => s.ItemsSource).To(vm => vm.CategoryDataSource);
+            tableView.Source = source;
+            set.Apply();
+            tableView.ReloadData();
+        }
+
+        #endregion
     }
 }
 
